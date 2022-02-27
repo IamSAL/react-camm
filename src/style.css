@@ -1,0 +1,10 @@
+h1, p {
+  font-family: Lato;
+}
+.w-50{
+  width: 50%;
+}
+.disabled{
+  filter: grayscale(100%);
+  pointer-events: none;
+}
