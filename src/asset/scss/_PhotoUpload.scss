@@ -1,0 +1,135 @@
+.nav_section {
+  padding: 20px 5%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  .logo {
+    @media screen and (max-width: 576px) {
+      img {
+        width: 85%;
+      }
+    }
+  }
+  .menu_btn {
+    font-size: 32px;
+    color: gray;
+    transition: all 0.3s ease;
+    &:hover {
+      color: black;
+    }
+  }
+}
+P {
+  color: gray;
+}
+.btn,
+.btn_sm {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  .upload_icon {
+    margin-right: 10px;
+    font-size: 30px;
+  }
+}
+.btn_sm {
+  @media screen and (max-width: 576px) {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+.main_content {
+  .img_section {
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    &:hover {
+      box-shadow: 0 4px 8px rgb(224, 224, 224);
+    }
+    @media screen and (max-width: 576px) {
+      width: 325px;
+      height: 200px;
+    }
+  }
+  .upload_section {
+    padding-top: 15rem;
+    padding-left: 5rem;
+    .upload_section_inner {
+      background-color: white;
+      border-radius: 10px;
+      width: 450px;
+      height: 250px;
+      @media screen and (max-width: 576px) {
+        width: 320px;
+        height: 200px;
+      }
+    }
+    @media screen and (max-width: 576px) {
+      padding-top: 0rem;
+      padding-left: 0rem;
+    }
+  }
+}
+
+/* ---------- upload_list_section ---------- */
+.upload_list_section {
+  .upload_list_items {
+    position: relative;
+    background-color: white;
+    border: 1px solid rgb(201, 201, 201);
+    .btn_close {
+      position: absolute;
+      right: 20px;
+      width: 30px;
+      font-size: 25px;
+      border: none;
+      background: transparent;
+      color: gray;
+    }
+
+    .left_section {
+      .tab_section {
+        .active {
+          position: relative;
+          font-weight: 700;
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #2699fb;
+            left: 0;
+            bottom: -5px;
+          }
+        }
+        span {
+          color: #2699fb;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: 500;
+          &:nth-child(odd) {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+
+    .right_section {
+      p {
+        font-size: 14px;
+        color: gray;
+      }
+      .emoji_section {
+        .emoji_icon {
+          font-size: 30px;
+          color: #414141;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}

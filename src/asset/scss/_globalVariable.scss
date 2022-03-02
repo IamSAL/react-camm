@@ -1,0 +1,221 @@
+/* Global variable */
+@mixin img_fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img_fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s_title {
+  font-size: 17px;
+  font-weight: 500;
+}
+.l_title {
+  color: rgb(51, 51, 51);
+  font-size: 72px;
+  font-weight: 800;
+  padding-bottom: 10px;
+  letter-spacing: normal;
+  @media only screen and (max-width: 1200px) {
+    font-size: 57px;
+    padding-bottom: 1rem;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 50px;
+    padding-bottom: 0rem;
+  }
+  @media only screen and (max-width: 575px) {
+    font-size: 38px;
+  }
+}
+.sub_title {
+  font-size: 25px;
+  @media only screen and (max-width: 575px) {
+    font-size: 18px;
+  }
+}
+.h_title {
+  font-size: 53px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 2px;
+}
+.s_h_title {
+  font-size: 20px;
+  font-weight: 800;
+}
+.section_title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+hr {
+  border-bottom: 1px solid var(--dark);
+}
+// Display Flex
+@mixin flex_center($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin b-title($fSize, $fWeight) {
+  font-size: $fSize;
+  font-weight: $fWeight;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.t_r_btn {
+  @include flex_center(center, center);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+  &:hover {
+    border: 1px solid var(--brand-color);
+  }
+  .icon {
+    font-size: 22px;
+    color: var(--pure_white);
+  }
+}
+
+.btnStyle {
+  text-align: center;
+  color: var(--pure_white);
+  background-color: var(--dark);
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  &:hover {
+    background-color: var(--brand-color);
+    color: var(--pure_white);
+  }
+}
+.btnStyle_sm {
+  color: var(--pure_white);
+  background-color: var(--dark);
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 400;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+  text-decoration: none;
+  &:hover {
+    background-color: var(--brand-color);
+    color: var(--pure_white);
+  }
+}
+
+// Background overlay
+@mixin bgOverlay($color, $opacity) {
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: $color, $alpha: $opacity);
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
+//
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex_between_a_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.section_padding_lg {
+  padding: 5rem 0;
+}
+.section_padding_sm {
+  padding: 2.5rem 0;
+}
+
+/* --------------------breadcrumb_section------------- */
+.breadcrumb_section {
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "";
+    color: var(--brand-color);
+  }
+  .breadcrumb-item > a {
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .breadcrumb-item.active {
+    color: var(--brand-color);
+  }
+}
+/* ------------- section_margin ------------ */
+.section_margin {
+  padding: 3rem 0;
+  @media only screen and (max-width: 1199px) {
+    padding: 2.5rem 0;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 2rem 0;
+  }
+  @media only screen and (max-width: 576px) {
+    padding: 1rem 0;
+  }
+}
+
+.btn_c {
+  width: 56px;
+  height: 56px;
+  background-color: var(--light_gray);
+  color: var(--dark);
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+  }
+}
+.btn_back {
+  position: fixed;
+  left: 42px;
+  top: 125px;
+  .btn_text {
+    position: absolute;
+    right: -38px;
+    transform: scale(0);
+    visibility: hidden;
+    transform-origin: left;
+    transition: all 0.5s ease;
+  }
+  &:hover .btn_text {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
