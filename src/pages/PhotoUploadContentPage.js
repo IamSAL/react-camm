@@ -22,7 +22,7 @@ function PhotoUploadContentPage(props) {
             <Col md={6} className="flex_center flex-column">
               <div className="px-md-5">
                 <h2 className="l_title">Remove Image Background</h2>
-                <p className="sub_title">100% Automatically and Free</p>
+                <p className="sub_title">100% Automatically</p>
               </div>
               <div className="img_section">
                 <img className="img_fit" src={img3} alt="" />
