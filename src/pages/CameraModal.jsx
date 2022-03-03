@@ -87,10 +87,7 @@ export function CameraModal({
               screenshotFormat="image/jpeg"
               //   width={"100%"}
               mirrored
-              videoConstraints={{
-                ...videoConstraints,
-                facingMode: { exact: cameraMode.current },
-              }}
+              videoConstraints={videoConstraints}
               onUserMedia={(media) => {
                 setHasWebcamUserMedia(true);
                 setcameraError(false);
