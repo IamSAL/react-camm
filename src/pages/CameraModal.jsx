@@ -87,7 +87,14 @@ export function CameraModal({
               screenshotFormat="image/jpeg"
               //   width={"100%"}
               mirrored
-              videoConstraints={videoConstraints}
+              videoConstraints={
+                window.screen.width < 769
+                  ? {
+                      ...videoConstraints,
+                      facingMode: cameraMode.current,
+                    }
+                  : videoConstraints
+              }
               onUserMedia={(media) => {
                 setHasWebcamUserMedia(true);
                 setcameraError(false);
@@ -98,7 +105,11 @@ export function CameraModal({
               }}
             />
           ) : (
-            <img src={capturedImage} className="w-100"></img>
+            <img
+              src={capturedImage}
+              className="w-100"
+              style={{ maxHeight: "80vh", maxWidth: "100vw" }}
+            ></img>
           )}
 
           <Row className="camera_actions">
