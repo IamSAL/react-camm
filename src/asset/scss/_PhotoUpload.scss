@@ -14,8 +14,12 @@
     font-size: 32px;
     color: gray;
     transition: all 0.3s ease;
-    &:hover {
-      color: black;
+    .menu_icon {
+      &:hover {
+        color: #2699fb;
+        cursor: pointer;
+      }
+      margin: 0px 10px;
     }
   }
 }
@@ -56,7 +60,7 @@ P {
     }
   }
   .upload_section {
-    padding-top: 15rem;
+    padding-top: 5rem;
     padding-left: 5rem;
     .upload_section_inner {
       background-color: white;
