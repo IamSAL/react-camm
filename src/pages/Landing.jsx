@@ -13,9 +13,9 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import ResultList from "./ResultList";
 import { useDropzone } from "react-dropzone";
-import { isMobile } from "react-device-detect";
 import { toast } from "react-toastify";
 import useMediaDevices from "./../hooks/useMediaDevices";
+import { isWindows } from "../utils/funcs";
 
 export const safeParseJSON = (message) => {
   try {
@@ -147,23 +147,27 @@ function Landing(props) {
 
   return (
     <Fragment>
-      <CameraModal
-        show={show}
-        handleClose={handleClose}
-        webcamRef={webcamRef}
-        videoConstraints={videoConstraints}
-        capture={capture}
-        isMobile={isMobile}
-        Mode={Mode}
-        setMode={setMode}
-        capturedImage={capturedImage}
-        onCameraSubmit={onCameraSubmit}
-        Loading={Loading}
-      />
+      {show && (
+        <CameraModal
+          show={show}
+          handleClose={handleClose}
+          webcamRef={webcamRef}
+          videoConstraints={videoConstraints}
+          capture={capture}
+          Mode={Mode}
+          setMode={setMode}
+          capturedImage={capturedImage}
+          onCameraSubmit={onCameraSubmit}
+          Loading={Loading}
+        />
+      )}
+
       <Container
         fluid={true}
         className="p-0 bg-light noPointer"
-        {...getRootProps()}
+        {...getRootProps({
+          role: "unset",
+        })}
         onClick={(e) => {
           console.log(e);
         }}
@@ -185,7 +189,7 @@ function Landing(props) {
             {Loading && (
               <Spinner animation="border" variant="dark" className="loader" />
             )}
-            {deviceStatus.hasWebcam && (
+            {deviceStatus.hasWebcam && isWindows() && (
               <FiCamera className="menu_icon" onClick={handleShow} />
             )}
 
@@ -210,7 +214,7 @@ function Landing(props) {
             </Col>
             <Col md={6} className="upload_section flex_center mt-0 px-0">
               <div className="flex-column flex_center upload_section_inner">
-                {deviceStatus.hasWebcam && (
+                {deviceStatus.hasWebcam && isWindows() && (
                   <Button
                     className="btn_webcam mb-3 btn-secondary"
                     onClick={handleShow}
@@ -226,7 +230,7 @@ function Landing(props) {
                   }}
                 >
                   <AiOutlineCloudUpload className="upload_icon" />
-                  Upload Image
+                  Upload
                 </Button>
                 <p>or drop a file...</p>
               </div>

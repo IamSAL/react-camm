@@ -72,36 +72,42 @@
   max-height: 100vh;
   max-width: 100vw;
   overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  z-index: 1;
+  width: 100vw;
+  background-color: #020202bd;
   @media (max-width: 769px) {
     background-color: rgba(0, 0, 0, 0.582);
   }
-  .modal-dialog {
-    max-width: 100vw;
-  }
-  .modal-content {
-    background-color: unset;
+  max-width: 100vw;
+  width: 100%;
+
+  height: 100%;
+  .modal_body {
     padding: 0px !important;
-    margin: 0px !important;
-    border: unset;
-    .modal-body {
-      padding: 0px !important;
-      display: grid !important;
-      margin-top: 4%;
-      justify-content: center;
+    display: grid !important;
+    margin-top: 4%;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 769px) {
+      width: 100%;
+      height: 100%;
     }
   }
   .camera_actions {
-    margin-top: -10%;
-    z-index: 2;
+    margin-top: -15%;
+    z-index: 3;
     @media (max-width: 769px) {
-      margin-top: -15%;
+      margin-top: -25%;
     }
   }
 
   .camera_actions_top.row {
     display: none;
     justify-content: center;
-    z-index: 2;
+    z-index: 3;
     margin-bottom: -8%;
     @media (max-width: 769px) {
       margin-bottom: -3%;
