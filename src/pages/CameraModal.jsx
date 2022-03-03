@@ -86,7 +86,7 @@ export function CameraModal({
               className="camera_content"
               screenshotFormat="image/jpeg"
               //   width={"100%"}
-              mirrored
+              mirrored={cameraMode.current == "user" ? true : false}
               videoConstraints={
                 window.screen.width < 769
                   ? {
