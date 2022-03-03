@@ -1,5 +1,11 @@
 import { CameraModal } from "./CameraModal";
-import React, { Fragment, useState, useCallback, useRef } from "react";
+import React, {
+  Fragment,
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+} from "react";
 import { Button, Col, Container, Row, Modal, Spinner } from "react-bootstrap";
 import logo from "../asset/photo/Swt_logo_black.png";
 import img3 from "../asset/photo/img-3-2.png";
@@ -9,6 +15,8 @@ import ResultList from "./ResultList";
 import { useDropzone } from "react-dropzone";
 import { isMobile } from "react-device-detect";
 import { toast } from "react-toastify";
+import useMediaDevices from "./../hooks/useMediaDevices";
+
 export const safeParseJSON = (message) => {
   try {
     return JSON.parse(message);
@@ -32,8 +40,8 @@ function dataURLtoFile(dataurl, filename) {
 }
 
 function Landing(props) {
+  const deviceStatus = useMediaDevices();
   const [show, setShow] = useState(false);
-
   const webcamRef = React.useRef(null);
   const [capturedImage, setCapturedImage] = useState("");
   const [results, setResults] = useState([]);
@@ -49,6 +57,12 @@ function Landing(props) {
     width: 1280,
     height: 720,
   });
+
+  useEffect(() => {
+    console.log({ deviceStatus });
+
+    return () => {};
+  }, [deviceStatus]);
 
   const onDrop = useCallback((acceptedFiles) => {
     let errors = 0;
@@ -91,6 +105,7 @@ function Landing(props) {
   }, [webcamRef]);
 
   function submitImage(formData, cbOk, cbErr) {
+    setMode("Camera");
     setLoading(true);
     fetch("https://background-app-3ckz4t2rya-uc.a.run.app/", {
       method: "POST",
@@ -170,25 +185,16 @@ function Landing(props) {
             {Loading && (
               <Spinner animation="border" variant="dark" className="loader" />
             )}
-            {isMobile ? (
-              <AiOutlineCloudUpload
-                className="menu_icon"
-                onClick={() => {
-                  inputRef.current?.click();
-                }}
-              />
-            ) : (
-              <AiOutlineCloudUpload
-                className="menu_icon"
-                {...getRootProps({
-                  onClick: (event) => console.log(event),
-                  role: "button",
-                  "aria-label": "drag and drop area",
-                })}
-              />
+            {deviceStatus.hasWebcam && (
+              <FiCamera className="menu_icon" onClick={handleShow} />
             )}
 
-            <FiCamera className="menu_icon" onClick={handleShow} />
+            <AiOutlineCloudUpload
+              className="menu_icon"
+              onClick={() => {
+                inputRef.current?.click();
+              }}
+            />
           </span>
         </div>
         <Container className=" main_content text-center section_margin">
@@ -204,35 +210,24 @@ function Landing(props) {
             </Col>
             <Col md={6} className="upload_section flex_center mt-0 px-0">
               <div className="flex-column flex_center upload_section_inner">
-                <Button
-                  className="btn_webcam mb-3 btn-secondary"
-                  onClick={handleShow}
-                >
-                  Use Webcam
-                </Button>
-                {isMobile ? (
+                {deviceStatus.hasWebcam && (
                   <Button
-                    className="btn btn_upload mb-2"
-                    onClick={() => {
-                      inputRef.current?.click();
-                    }}
+                    className="btn_webcam mb-3 btn-secondary"
+                    onClick={handleShow}
                   >
-                    <AiOutlineCloudUpload className="upload_icon" />
-                    Upload Image
-                  </Button>
-                ) : (
-                  <Button
-                    className="btn btn_upload mb-2"
-                    {...getRootProps({
-                      onClick: (event) => console.log(event),
-                      role: "button",
-                      "aria-label": "drag and drop area",
-                    })}
-                  >
-                    <AiOutlineCloudUpload className="upload_icon" />
-                    Upload Image
+                    Use Webcam
                   </Button>
                 )}
+
+                <Button
+                  className="btn btn_upload mb-2"
+                  onClick={() => {
+                    inputRef.current?.click();
+                  }}
+                >
+                  <AiOutlineCloudUpload className="upload_icon" />
+                  Upload Image
+                </Button>
                 <p>or drop a file...</p>
               </div>
             </Col>

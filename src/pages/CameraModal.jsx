@@ -76,6 +76,7 @@ export function CameraModal({
             audio={false}
             height={720}
             ref={webcamRef}
+            className="camera_content"
             screenshotFormat="image/jpeg"
             //   width={"100%"}
             mirrored

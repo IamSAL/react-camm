@@ -155,3 +155,10 @@ body {
 .emoji_icon_click {
   cursor: pointer;
 }
+
+.camera_content {
+  max-height: 80vh;
+  @media (max-width: 769px) {
+    max-height: 90vh;
+  }
+}
