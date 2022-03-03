@@ -107,7 +107,6 @@ export function CameraModal({
           ) : (
             <img
               src={capturedImage}
-              className="w-100"
               style={{ maxHeight: "80vh", maxWidth: "100vw" }}
             ></img>
           )}
